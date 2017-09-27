@@ -1,0 +1,8 @@
+<div *ngIf="currentUser">
+  <a [routerLink]="['/home/profile/edit']">Edit Profile</a>
+  <p>Username: {{currentUser.username}}</p>
+  <p>Email: {{currentUser.email}}</p>
+  <p>First Name: {{currentUser.firstName}}</p>
+  <p>Last Name: {{currentUser.lastName}}</p>
+  <p>Description: {{currentUser.description}}</p>
+</div>

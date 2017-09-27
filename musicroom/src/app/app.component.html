@@ -1,0 +1,39 @@
+<fieldset>
+  <legend>Nav Bar</legend>
+  <a *ngIf="!currentUser" [routerLink]="['/']">Home</a>
+  <a *ngIf="currentUser" [routerLink]="['/home']">Home</a>
+  <a *ngIf="!currentUser" [routerLink]="['/login']">Login</a>
+  <a *ngIf="!currentUser" [routerLink]="['/register']">Register</a>
+  <a *ngIf="currentUser" [routerLink]="['/home/profile/current']">My Profile</a>
+
+  <div *ngIf="searchMode==='users'" style="display: inline-block;">
+    <form *ngIf="currentUser" (submit) = "redirectToSearchPageWithSearchVal()">
+      <input type="text" name="searchU" placeholder="Search User" [(ngModel)]="searchVal" (keyup) = "searchUsers()" />
+      <input type="submit" value="Search Users" />
+    </form>
+  </div>
+
+  <div *ngIf="searchMode==='music'"style="display: inline-block;">
+    <form *ngIf="currentUser" (submit) = "searchMusic()">
+      <input type="text" name="searchM" placeholder="Search Music" [(ngModel)]="searchVal2" />
+      <input type="submit" value="Search Music" />
+    </form>
+  </div>
+
+  <div *ngIf="searchMode==='rooms'"style="display: inline-block;">
+    <form *ngIf="currentUser" (submit) = "redirectToSearchRoomPageWithSearchVal3()">
+      <input type="text" name="searchM" placeholder="Search Chatrooms" [(ngModel)]="searchVal3" (keyup) = "searchRooms()"/>
+      <input type="submit" value="Search Rooms" />
+    </form>
+  </div>
+
+  <select *ngIf="currentUser" name="searchMode" [(ngModel)]="searchMode">
+    <option value="users">Users</option>
+    <option value="music">Music</option>
+    <option value="rooms">Chatrooms</option>
+  </select>
+
+  <a *ngIf="currentUser" [routerLink]="['/logout']">Logout</a>
+</fieldset>
+
+<router-outlet></router-outlet>

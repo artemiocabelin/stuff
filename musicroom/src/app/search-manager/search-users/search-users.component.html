@@ -1,0 +1,16 @@
+<h1>Search User Results</h1>
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let user of showSearchResultUsers">
+      <td *ngIf="user && user._id != currentUser._id">{{user.username}}</td>
+      <td *ngIf="user && user._id != currentUser._id">
+        <a [routerLink]="['/home/users', user.userId]">Show Profile</a>
+        <button *ngIf="!user.received_invites.includes(currentUser._id) && !isFriendOfCurrentUser(user.friends)" (click)="sendInvite(user.userId)">Send Invite</button>
+        <span *ngIf="user.received_invites.includes(currentUser._id)">Invite Sent</span>
+        <span *ngIf="isFriendOfCurrentUser(user.friends)">Friend</span>
+      </td>
+  </tr>
+</table>

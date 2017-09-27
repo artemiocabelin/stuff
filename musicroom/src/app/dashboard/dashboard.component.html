@@ -1,0 +1,38 @@
+<p>You now in dashboard</p>
+
+<!-- <router-outlet></router-outlet> -->
+<!-- <a [routerLink]="['room']">qqqq</a> -->
+<fieldset class="wrapper">
+    <legend>Dashboard Page</legend>
+    <fieldset class="joined inblock">
+        <legend>Joined Rooms</legend>
+        <a [routerLink]='["room","new"]' >Create Room</a>
+        <div *ngFor="let room of currentUser.joinedRooms">
+            <a [routerLink]="['room', room.roomId]">{{room.title}}</a>
+        </div>
+    </fieldset>
+    <fieldset class="main inblock">
+        <legend>Main View</legend>
+        <fieldset class="router">
+            <legend>Router-Outlet</legend>
+            <router-outlet></router-outlet>
+        </fieldset>
+    <fieldset class="active-music">
+        <legend>Active MusicRoom/Player present if active room is minimized</legend>
+    </fieldset>
+    </fieldset>
+    <fieldset class="secondary inblock">
+        <legend>Secondary View</legend>
+        <fieldset class="online subcomponents">
+            <legend>See who's online</legend>
+            <div *ngFor="let friend of currentUser.onlineFriends">
+                <a [routerLink]="['home','users', friend.userId]">{{friend.username}}</a>
+            </div>
+        </fieldset>
+        <fieldset class="favorites subcomponents">
+            <legend>Current User's Favorite Songs</legend>
+        </fieldset>
+    </fieldset>
+
+
+</fieldset>

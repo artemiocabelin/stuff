@@ -1,0 +1,13 @@
+<h1>Search User Results</h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Owner</th>
+  </tr>
+  <tr *ngFor="let room of showSearchResultRooms">
+      <td><a [routerLink]="['/home/room', room.roomId]">{{room.title}}</a>
+      </td>
+      <td><a [routerLink]="['/home/users', room._owner.userId]">{{room._owner.username}}</a>
+      </td>
+  </tr>
+</table>

@@ -1,0 +1,102 @@
+<fieldset>
+  <legend>Registration</legend>
+    <div style="color: red;" *ngIf="isDuplicate && username">
+    <p *ngIf="username.errors.required">Username has already been taken.</p> 
+  </div>
+  <form (submit)="registerUser(); form.reset()" #form="ngForm" >
+    <p>
+      <label>Username: 
+        <input 
+          type="text" 
+          name="username" 
+          required 
+          minlength="5" 
+          [(ngModel)]="user.username"
+          #username='ngModel'
+        />
+      </label>
+    </p>
+  <div style="color: red;" *ngIf="!username.valid && (username.dirty || username.touched)">
+    <p *ngIf="username.errors.required">Username is Required</p> 
+    <p *ngIf="username.errors.minlength">Username must be at least 5 characters long</p> 
+  </div>
+    <p>
+      <label>Email: 
+          <input 
+            type="text" 
+            name="email" 
+            required 
+            pattern='(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))'
+            [(ngModel)]="user.email"
+            #email='ngModel'
+          />
+      </label>
+    </p>
+  <div style="color: red;" *ngIf="!email.valid && (email.dirty || email.touched)">
+    <p *ngIf="email.errors.required">Email is Required</p> 
+    <p *ngIf="email.errors.pattern">Please enter a valid email</p> 
+  </div>
+    <p>
+      <label>First Name: 
+        <input 
+          type="text" 
+          name="firstName" 
+          required 
+          minlength="2" 
+          [(ngModel)]="user.firstName"
+          #firstName='ngModel'
+        />
+      </label>
+    </p>
+  <div style="color: red;" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)">
+    <p *ngIf="firstName.errors.required">First Name is Required</p> 
+    <p *ngIf="firstName.errors.minlength">First Name must be at least 2 characters long</p> 
+  </div>
+    <p>
+      <label>Last Name: 
+        <input 
+          type="text" 
+          name="lastName" 
+          required 
+          minlength="2" 
+          [(ngModel)]="user.lastName"
+          #lastName='ngModel'
+        />
+      </label>
+    </p>
+  <div style="color: red;" *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)">
+    <p *ngIf="lastName.errors.required">Last Name is Required</p> 
+    <p *ngIf="lastName.errors.minlength">Last Name must be at least 2 characters long</p> 
+  </div>
+    <p>
+      <label>Password: 
+        <input 
+          type="password" 
+          name="password" 
+          required 
+          minlength="8" 
+          [(ngModel)]="user.password"
+          #password='ngModel'
+        />
+      </label>
+    </p>
+  <div style="color: red;" *ngIf="!password.valid && (password.dirty || password.touched)">
+    <p *ngIf="password.errors.required">Password is Required</p> 
+    <p *ngIf="password.errors.minlength">Password must be at least 8 characters long</p> 
+  </div>
+    <p>
+      <label>Password Confirmation: 
+        <input type="password" name="passwordConfirmation" required [(ngModel)] = "user.passwordConfirmation" pattern="{{user.password}}" #passwordConfirmation="ngModel"/>
+      </label>
+    </p>
+  <div style="color: red;" *ngIf="!passwordConfirmation.valid && (passwordConfirmation.dirty || passwordConfirmation.touched)">
+    <p *ngIf="passwordConfirmation.errors.required">Password Confirmation is Required</p> 
+    <p *ngIf="passwordConfirmation.errors.pattern">Password Confirmation must match with Password</p> 
+  </div>
+    <input type="submit" value="Register" [disabled] = "password.invalid || lastName.invalid || firstName.invalid || passwordConfirmation.invalid || email.invalid || username.invalid">
+  </form>
+</fieldset>
+
+
+
+

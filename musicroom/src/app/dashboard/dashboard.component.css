@@ -1,0 +1,43 @@
+.wrapper {
+    height: 100vh;
+}
+
+.inblock {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.joined {
+    height:95%;
+    width: 10%;
+}
+
+.main {
+    height: 95%;
+    width: 73%;
+}
+
+.secondary {
+    height: 95%;
+    width: 10%;
+}
+
+.subcomponents {
+    height: 45%;
+}
+
+.online {
+
+}
+
+.favorites {
+
+}
+
+.router {
+    height: 85%;
+}
+
+.active-music {
+    height: 8%;
+}

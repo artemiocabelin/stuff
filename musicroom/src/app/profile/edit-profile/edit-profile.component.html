@@ -1,0 +1,65 @@
+<div *ngIf="currentUser">
+  <form (submit)="editCurrentUser()">
+  <input type="submit" value="Save" [disabled] = "lastName.invalid || firstName.invalid || email.invalid">
+  <p>Username: {{currentUser.username}}</p>
+  <p>
+    <label>Email: 
+        <input 
+          type="text" 
+          name="email" 
+          required 
+          pattern='(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))'
+          [(ngModel)]="currentUser.email"
+          #email='ngModel'
+        />
+    </label>
+  </p>
+  <div style="color: red;" *ngIf="!email.valid && (email.dirty || email.touched)">
+    <p *ngIf="email.errors.required">Email is Required</p> 
+    <p *ngIf="email.errors.pattern">Please enter a valid email</p> 
+  </div>
+    <p>
+      <label>First Name: 
+        <input 
+          type="text" 
+          name="firstName" 
+          required 
+          minlength="2" 
+          [(ngModel)]="currentUser.firstName"
+          #firstName='ngModel'
+        />
+      </label>
+    </p>
+  <div style="color: red;" *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)">
+    <p *ngIf="firstName.errors.required">First Name is Required</p> 
+    <p *ngIf="firstName.errors.minlength">First Name must be at least 2 characters long</p> 
+  </div>
+    <p>
+      <label>Last Name: 
+        <input 
+          type="text" 
+          name="lastName" 
+          required 
+          minlength="2" 
+          [(ngModel)]="currentUser.lastName"
+          #lastName='ngModel'
+        />
+      </label>
+    </p>
+  <div style="color: red;" *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)">
+    <p *ngIf="lastName.errors.required">Last Name is Required</p> 
+    <p *ngIf="lastName.errors.minlength">Last Name must be at least 2 characters long</p> 
+  </div>
+    <p>
+      <label>Description (optional): 
+        <textarea 
+          type="text" 
+          name="description" 
+          [(ngModel)]="currentUser.description"
+          #description='ngModel'
+        ></textarea>
+      </label>
+    </p>
+  </form>
+</div>
+

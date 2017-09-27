@@ -1,0 +1,21 @@
+<div style="border: 1px solid black;">
+  {{room.title}}
+  <div *ngIf="userInRoom">
+    <div id="allMessages">
+      <p *ngFor="let msg of room.chatlog">{{msg.user}}: {{msg.message}}</p>
+    </div>
+    <form (submit)="sendMessage()">
+      <input type="text" placeholder="Message" [(ngModel)]="message" name="msg">
+      <input type="submit" value="Send">
+    </form>
+  </div>
+  <div *ngIf="!userInRoom">
+    <div *ngIf="room.isPublic">
+      <button (click)="joinRoom()">Join Room</button>
+    </div>
+    <div *ngIf="!room.isPublic">
+      <input type="text" name="roomPassword" [(ngModel)]="roomPW" placeholder="Enter password">
+      <button (click)="joinRoom()" [disabled]="roomPW != room.password">Join Room</button>
+    </div>
+  </div>
+</div>

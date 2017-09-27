@@ -1,0 +1,51 @@
+<p>Search Music Results</p>
+<fieldset *ngIf="trackSearchResults">
+  <legend>Tracks</legend>
+  <table class="music-results" >
+    <tr>
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let track of trackSearchResults">
+      <td>{{track.name}}</td>
+      <td>{{track.artist}}</td>
+      <td>
+        <a href="#">Add to Favorites</a>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<fieldset *ngIf="albumSearchResults">
+  <legend>Album</legend>
+  <table class="music-results" >
+    <tr>
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let album of albumSearchResults">
+      <td>{{album.name}}</td>
+      <td>{{album.artist}}</td>
+      <td>
+        <a href="#">Browse Album's Songs</a>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<!--<fieldset *ngIf="artistSearchResults">
+  <legend>Artist</legend>
+  <table class="music-results" >
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let artist of artistSearchResults">
+      <td>{{artist.name}}</td>
+      <td>
+        <a href="#">Browse Artist's Albums</a>
+        <a href="#">Browse Artist's Songs</a>
+      </td>
+    </tr>
+  </table>
+</fieldset>-->

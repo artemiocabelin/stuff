@@ -1,0 +1,23 @@
+<div *ngIf="user">
+  <h1>Other User's Profile</h1>
+  <h2>Username: {{user.username}}</h2>
+  <p>Email: {{user.email}}</p>
+  <p>First Name: {{user.firstName}}</p>
+  <p>Last Name: {{user.lastName}}</p>
+  <p>Description: {{user.description}}</p>
+<h3>Friends</h3>
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let friend of user.friends">
+      <td *ngIf="friend && friend._id != currentUser._id"><a [routerLink]="['/home/users', friend.userId]">{{friend.username}}</a></td>
+      <td *ngIf="friend && friend._id != currentUser._id">
+        <button *ngIf="!friend.received_invites.includes(currentUser._id) && !isFriendOfCurrentUser(friend.friends, currentUser._id)" (click)="sendInvite(friend.userId)">Send Invite</button>
+        <span *ngIf="friend.received_invites.includes(currentUser._id)">Invite Sent</span>
+        <span *ngIf="isFriendOfCurrentUser(friend.friends, currentUser._id)">Friend</span>
+      </td>
+    </tr>
+  </table>
+</div>

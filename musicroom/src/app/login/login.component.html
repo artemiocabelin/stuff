@@ -1,0 +1,25 @@
+<fieldset>
+  <legend>Login</legend>
+<div style="color: red;" *ngIf="incorrectLogin">
+  <p>Invalid Login Credentials. Please try again.</p> 
+</div>
+<form (submit)="loginUser(); form.reset()" #form="ngForm">
+  <p>
+    <label>Username: 
+      <input type="text" name="username" required [(ngModel)] = "user.username" #username="ngModel"/>
+    </label>
+  </p>
+    <div style="color: red;" *ngIf="!username.valid && (username.dirty || username.touched)">
+      <p *ngIf="username.errors.required">Username is Required</p> 
+    </div>
+  <p>
+    <label>Password: 
+      <input type="password" name="password" required [(ngModel)] = "user.password" #password="ngModel" />
+    </label>
+  </p>
+    <div style="color: red;" *ngIf="!password.valid && (password.dirty || password.touched)">
+      <p *ngIf="password.errors.required">Password is Required</p> 
+    </div>
+  <input type="submit" value="Login" [disabled] = "password.invalid || username.invalid" />
+</form>
+</fieldset>
